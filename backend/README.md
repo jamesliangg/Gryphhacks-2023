@@ -29,6 +29,20 @@ docker kill <container id>
 docker push jamesliangg/gryphhacks
 ```
 
+### Azure Containers
+```
+az container create --resource-group myResourceGroup --name mycontainer \
+    --image docker.io/jamesliangg/gryphhacks --environment-variables GEOAPIFY_API_KEY="<COHERE_KEY>" MONGO_CONNECT_STRING="<DEEPL_KEY>" \
+    --ip-address Public --ports 80 3000 --os-type Linux
+```
+
+```
+az containerapp update \
+    --name <APPLICATION_NAME> \
+    --resource-group <RESOURCE_GROUP_NAME> \
+    --image <IMAGE_NAME>
+```
+
 # API Doucmentation
 POST Request
 
