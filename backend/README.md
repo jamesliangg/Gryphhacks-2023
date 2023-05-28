@@ -122,3 +122,26 @@ Returns number of crimes committed in specified area for 2022
 }
 ```
 <hr>
+
+## /geocode
+
+Returns number of crimes committed in specified area for 2022
+### Request body data in raw JSON
+```
+{
+    "action": "geocode",
+    "input": "50 Merton Street, Toronto, Ontario"
+}
+```
+
+### Response
+```
+{
+    "action": "geocode",
+    "result": {
+        "latitude": 43.69658652941177,
+        "longitude": -79.39442482352942
+    }
+}
+```
+<hr>

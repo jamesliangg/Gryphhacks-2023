@@ -95,6 +95,19 @@ app.post('/api/endpoint', async function (req, res) {
                 console.log(err.message);
             }
             break;
+        case "geocode":
+            try {
+                let coordinates = await geocodeLatLong(req.body.input);
+                let longitude = coordinates.features[0].properties.lon;
+                let latitude = coordinates.features[0].properties.lat;
+                result = {
+                    "latitude": latitude,
+                    "longitude": longitude
+                }
+            } catch(err) {
+                console.log(err.message);
+            }
+            break;
     }
 
     response = JSON.stringify({
