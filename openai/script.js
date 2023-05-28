@@ -317,7 +317,8 @@ addEventSubmit.addEventListener("click", () => {
 	const eventTimeTo = addEventTo.value;
 	const eventLocation = addEventLocation.value;
 	if (eventLocation !== "") {
-		fetch("http://20.124.56.108:3000/api/endpoint", {
+		console.log("Foorbar")
+		fetch("https://20.237.72.168:3000/api/endpoint", {
 			method: "POST",
 			headers: {
 				Accept: "application/json",
