@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <title>Thor Guide</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet' />
+   
+    <link href='map_style.css' rel="stylesheet" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="hystmodal.min.css">
+
+</head>
+<body>
+    <header class="header">
+        <a href="#home" class="logo">ThorGuide</a>
+
+        <i class='bx bx-menu' id="menu-icon"></i>
+
+        <nav class="navbar">
+            <a href="#home" class="active"><i class='bx bxs-home-alt-2'></i> Home</a>
+            <a href="#map"><box-icon name='compass'></box-icon> Map</a>
+            <a href="#accessibility"><box-icon name='chat' type='solid' ></box-icon> Accessibility</a>
+        </nav>
+    </header>
+
+    <section class="home" id="home">
+        <div class="home-content">
+                <h3>Welcome to</h3>
+                <h1>ThorGuide</h1>
+                <h3> <span class="multiple-text"></span></h3>
+                <p>We help you learn a place's <span><b>History</b></span>, <span><b>Landmarks</b></span>, while also providing <span><b>Accessibility</b></span> to people.</p>
+        
+            <div class="social-media">
+                <a href="mailto:tanish.sharma@mail.utoronto.ca"><i class='bx bxs-envelope' ></i></a>
+                <a href="https://www.instagram.com/cleverstudyboy/" target=”_blank”><i class='bx bxl-instagram' ></i></a>
+                <a href="https://www.instagram.com/cleverstudyboy/" target=”_blank”><i class='bx bxl-facebook-circle' ></i></a>
+                <a href="https://www.instagram.com/cleverstudyboy/" target=”_blank”><i class='bx bxl-twitter'></i></a>
+            </div>
+           
+        </div>
+    </section>
+
+    <section class="map" id="map">
+
+    </section>
+
+    <section class="Accessibility" id="Accessibility">
+
+    </section>
+
+<script src='./index.js'></script>
+<script src="./script.js"></script>
+<script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script type="text/javascript">
+    (function(d, t) {
+        var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+        v.onload = function() {
+          window.voiceflow.chat.load({
+            verify: { projectID: '647232a7df06c90007e86c56' },
+            url: 'https://general-runtime.voiceflow.com/',
+            versionID: 'production'
+          });
+        }
+        v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+    })(document, 'script');
+  </script>
+</body>
+</html>
