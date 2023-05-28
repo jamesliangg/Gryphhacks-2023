@@ -3,13 +3,14 @@ import {
     mongoFindDuplicate,
     mongoInsertOne,
     mongoQueryMultiple,
-    mongoQueryOne
+    mongoQueryOne, mongoSortCrimes
 } from "./mongodb-functions.js";
 import {scrapeLinks, scrapeWebsite} from "./puppeteer-functions.js";
 import {geocodeLatLong} from "./geoapify.js";
 import express from 'express';
 const app = express();
 import bodyParser from "body-parser";
+const port = 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -108,6 +109,13 @@ app.post('/api/endpoint', async function (req, res) {
                 console.log(err.message);
             }
             break;
+        case "sortCrimes":
+            try {
+                result = await mongoSortCrimes(req.body.input, req.body.mongoDatabase, req.body.mongoCollection);
+            } catch(err) {
+                console.log(err.message);
+            }
+            break;
     }
 
     response = JSON.stringify({
@@ -119,5 +127,5 @@ app.post('/api/endpoint', async function (req, res) {
 });
 
 app.listen(3000, function() {
-    console.log('Server listening at http://127.0.0.1:3000/api/endpoint');
+    console.log('Server listening at http://CONTAINER_IP_ADDRESS:' + port +'/api/endpoint');
 });

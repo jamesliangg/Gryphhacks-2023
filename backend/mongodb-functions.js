@@ -111,3 +111,35 @@ export async function mongoCountCrimes(queryArray, mongoDatabase, mongoCollectio
         return queryResult;
     }
 }
+
+export async function mongoSortCrimes(queryArray, mongoDatabase, mongoCollection) {
+    const client = new MongoClient(uri);
+    let queryResult = "Error in query";
+    try {
+        const database = client.db(mongoDatabase);
+
+        let queryObject = {};
+        for (const i in queryArray) {
+            if (queryArray[i].length == 3) {
+                Object.assign(queryObject, {[queryArray[i][0]]: {$gte : queryArray[i][1], $lte : queryArray[i][2]}});
+            }
+            else {
+                Object.assign(queryObject, {[queryArray[i][0]]: queryArray[i][1]});
+            }
+        }
+
+        const collection = database.collection(mongoCollection);
+
+        queryResult = await collection.aggregate([
+            { $match: queryObject},
+            { $group : { _id : '$MCI_CATEGORY', count : {$sum : 1}}}
+        ]).toArray();
+
+    } catch(err) {
+        queryResult = err.message;
+    } finally {
+        // Ensures that the client will close when you finish/error
+        await client.close();
+        return queryResult;
+    }
+}

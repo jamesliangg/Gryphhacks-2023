@@ -3,18 +3,18 @@ https://data.torontopolice.on.ca/maps/major-crime-indicators-open-data
 https://www.pc.gc.ca/apps/DFHD/default_eng.aspx
 https://open.toronto.ca/dataset/parks-and-recreation-facilities/
 
+# References
 https://stackoverflow.com/questions/25163658/mongodb-return-true-if-document-exists
 https://www.mongodb.com/docs/manual/reference/method/db.collection.countDocuments/#mongodb-method-db.collection.countDocuments
 https://dev.to/cloudx/how-to-use-puppeteer-inside-a-docker-container-568c
 https://docs.mapbox.com/help/tutorials/custom-markers-gl-js/#add-popups
+https://www.digitalocean.com/community/tutorials/use-expressjs-to-deliver-html-files
+https://www.mongodb.com/docs/drivers/node/current/fundamentals/aggregation/
 
 ## Importing Data to Azure Cosmos DB
+`mongoimport --uri="<MONGO_CONNECT_STRING>" --db "<SOURCE_DATABASE>" --collection "<SOURCE_COLLECTION>" --ssl --type csv --writeConcern=\"{w:0}\" --file <CSV_FILE_PATH> --headerline`
 
-mongoimport --uri="<MONGO_CONNECT_STRING>" --db "<SOURCE_DATABASE>" --collection "<SOURCE_COLLECTION>" --ssl --type csv --writeConcern=\"{w:0}\" --file <CSV_FILE_PATH> --headerline
-
-
-
-Building Docker container
+### Building Docker container
 ```
 docker buildx build --platform=linux/amd64 --output type=docker -t jamesliangg/gryphhacks .
 
@@ -142,6 +142,41 @@ Returns number of crimes committed in specified area for 2022
         "latitude": 43.69658652941177,
         "longitude": -79.39442482352942
     }
+}
+```
+<hr>
+
+## /mongoSortCrimes
+
+Returns list of crimes and occurrences in area for specified months in 2022 
+### Request body data in raw JSON
+```
+{
+    "action": "sortCrimes",
+    "input": [["LONG_WGS84", -79.33, -79.325], ["LAT_WGS84", 43.75, 43.8], ["OCC_MONTH", "October"]],
+    "mongoDatabase": "aries",
+    "mongoCollection": "torontocrime"
+}
+```
+
+### Response
+```
+{
+    "action": "sortCrimes",
+    "result": [
+        {
+            "_id": "Assault",
+            "count": 2
+        },
+        {
+            "_id": "Auto Theft",
+            "count": 5
+        },
+        {
+            "_id": "Break and Enter",
+            "count": 1
+        }
+    ]
 }
 ```
 <hr>
